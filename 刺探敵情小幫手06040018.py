@@ -7,6 +7,8 @@ pip install selenium BeautifulSoup requests jieba numpy scipy wordcloud
 https://sites.google.com/chromium.org/driver/
 '''
 
+# 加一行測試
+
 ## Step2：安裝並匯入相關套件或模組
 # 爬蟲相關套件
 from bs4 import BeautifulSoup as Soup
