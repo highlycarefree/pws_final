@@ -7,7 +7,7 @@
 2. 下載並解壓縮本程式包
 3. 下載chrome，並確認chrome版本（可從右上角 `... >> 設定 >> 關於chrome` 查看）  
 4. 至以下網址下載對應版本之ChromeDriver  
-https://sites.google.com/chromium.org/driver/  
+<https://sites.google.com/chromium.org/driver/>  
 安裝完畢後複製路徑，建議將chromedriver放在 `social_media_spy-main` 資料夾，則路徑僅需輸入 `./chromedriver` 即可  
 5. 使用時，開啟終端機於 `social_media_spy-main` 資料夾下輸入指令：
  `python main.py` 或 `python3 main.py` ，並依指示依序輸入chromedriver路徑、粉專網址、頁面捲動次數、帳號、密碼，結果之折線圖與文字雲圖檔將會自動儲存至 `social_media_spy-main` 資料夾下  
