@@ -2,7 +2,7 @@
 ## Step 1. 事前下載
 '''
 1. 在終端機輸入以下指令以下載必要模組：
-pip install selenium BeautifulSoup requests jieba numpy scipy wordcloud
+pip install selenium BeautifulSoup requests lxml jieba numpy scipy wordcloud
 2. 至以下網址下載ChromeDriver，安裝完畢後複製路徑
 https://sites.google.com/chromium.org/driver/
 '''
@@ -268,7 +268,7 @@ c = wordcloud.WordCloud(font_path = '/System/Library/Fonts/PingFang.ttc', \
                         width = 1000, height = 1000, scale = 1, \
                         prefer_horizontal = 0.95, \
                         min_font_size = 20, max_font_size = None, \
-                        background_color = "rgba(255,255,255,255)", \
+                        background_color = "rgba(255,255,255,0)", \
                         mode = "RGBA", \
                         mask = my_mask, \
                         color_func = my_colors_func, \
