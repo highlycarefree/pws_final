@@ -5,7 +5,7 @@
 1. 在終端機輸入以下指令以下載必要之模組及套件：
 `pip install selenium BeautifulSoup requests lxml numpy scipy matplotlib jieba wordcloud`
 2. 下載並解壓縮本程式包
-3. 下載chrome，並確認chrome版本（可從右上角 `... >> 設定 >> 關於chrome` 查看）  
+3. 下載chrome，並確認chrome版本（可從右上角 `...` >> `設定` >> `關於chrome` 查看）  
 4. 至以下網址下載對應版本之ChromeDriver  
 <https://sites.google.com/chromium.org/driver/>  
 安裝完畢後複製路徑，建議將chromedriver放在 `social_media_spy-main` 資料夾，則路徑僅需輸入 `./chromedriver` 即可  
