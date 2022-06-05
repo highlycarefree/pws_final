@@ -51,7 +51,7 @@ while True:
     options.add_experimental_option('prefs', prefs)
     
     # 開啟Facebook頁面
-    # driver_path = input('請輸入webdriver路徑：')
+    input('Enter以重新啟動：')
     driver = webdriver.Chrome(driver_path, options = options)
     url = 'https://www.facebook.com'
     driver.get(url)
