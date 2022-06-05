@@ -38,6 +38,7 @@ from datetime import datetime
 import time
 
 ## Step 3. 爬蟲
+driver_path = input('請輸入webdriver路徑：')
 while True:
     # 阻擋彈出式頁面
     options = webdriver.ChromeOptions()
@@ -50,7 +51,7 @@ while True:
     options.add_experimental_option('prefs', prefs)
     
     # 開啟Facebook頁面
-    driver_path = input('請輸入webdriver路徑：')
+    # driver_path = input('請輸入webdriver路徑：')
     driver = webdriver.Chrome(driver_path, options = options)
     url = 'https://www.facebook.com'
     driver.get(url)
@@ -160,7 +161,7 @@ while True:
     for k in range(len(shares)):
         k = int(k)
         
-    # 確定爬蟲資料無誤，若有誤會重新再爬一次
+    # 確定爬蟲資料無誤，若有誤則重新再爬一次
     if len(times) == len(likes) == len(comments) == len(shares) and len(likes) > 3 :
         break
     else:
@@ -175,32 +176,37 @@ for z in best_3:
     best_links.append(links[z])
         
 # 留言爬蟲
-comments_list = []
 account = input('請輸入帳號：')
-# psw = input('請輸入密碼：')
 psw = getpass('請輸入密碼：')
-for i in range(3):  
-    driver.get(best_links[i])
-    wait = WebDriverWait(driver, 30)
-    try:
-        email_field = wait.until(EC.visibility_of_element_located((By.NAME, 'email')))
-        email_field.send_keys(account)
-        pass_field = wait.until(EC.visibility_of_element_located((By.NAME, 'pass')))
-        pass_field.send_keys(psw)
-        pass_field.send_keys(Keys.RETURN)
+while True:
+    comments_list = []
+    for i in range(3):  
+        driver.get(best_links[i])
+        wait = WebDriverWait(driver, 30)
+        try:
+            email_field = wait.until(EC.visibility_of_element_located((By.NAME, 'email')))
+            email_field.send_keys(account)
+            pass_field = wait.until(EC.visibility_of_element_located((By.NAME, 'pass')))
+            pass_field.send_keys(psw)
+            pass_field.send_keys(Keys.RETURN)
+            time.sleep(5)
+        except:
+            pass
         time.sleep(5)
-    except:
-        pass
-    time.sleep(5)
-    roots = Soup(driver.page_source, "html.parser")
-    comments_ = roots.find_all(class_ = "tw6a2znq sj5x9vvc d1544ag0 cxgpxx05")
-    for comment in comments_:
-        content = comment.find_all(class_ = "ecm0bbzt e5nlhep0 a8c37x1j")
-        if len(content) != 0:
-            for cont in content:
-                comments_list.append(cont.text)
-        else:
-            comments_list.append('')
+        roots = Soup(driver.page_source, "html.parser")
+        comments_ = roots.find_all(class_ = "tw6a2znq sj5x9vvc d1544ag0 cxgpxx05")
+        for comment in comments_:
+            content = comment.find_all(class_ = "ecm0bbzt e5nlhep0 a8c37x1j")
+            if len(content) != 0:
+                for cont in content:
+                    comments_list.append(cont.text)
+            # else:
+            #     comments_list.append('')
+    if len(comments_list) > 0:
+        break
+    else:
+        print('很抱歉！受網路速度影響，導致爬蟲結果不完整，將再次嘗試。')
+        continue
 
 ## Step 4. 視覺化｜繪製折線圖
 # 設定圖片的中文字型、解析度、長寬與背景色
@@ -243,8 +249,7 @@ for x, y in zip(times, shares):
 ## Step 5. 視覺化｜繪製文字雲
 # reading the article
 article = ""
-for tmp in comments_list:
-    for c in tmp:
+for c in comments_list:
         article += c + '\n'
 
 # using jeiba mod to split the article
